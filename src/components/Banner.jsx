@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import BannerImage from '../assets/banner.jpg';
 const Banner = () => {
 	return (
@@ -11,7 +12,9 @@ const Banner = () => {
 					level. From smart devices to the coolest accessories, we have it all!
 				</p>
 				<div className="text-center">
-					<button className="btn">Shop Now</button>
+					<Link to="/dashboard" className="btn">
+						Dashboard
+					</Link>
 				</div>
 			</div>
 			<div className="-mb-60 mt-8 backdrop-blur-sm p-4 border border-white rounded-xl">

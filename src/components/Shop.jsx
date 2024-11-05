@@ -1,24 +1,23 @@
-import ProductCard from './ProductCard';
+import { useEffect, useState } from 'react';
+import ProductsGallery from './ProductsGallery';
+import Sidebar from './Sidebar';
 
 const Shop = () => {
-	const products = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-	const links = [1, 2, 3, 4, 5, 6];
+	const [products, setProducts] = useState([]);
+	const [categories, setCategories] = useState([]);
+	useEffect(() => {
+		fetch('/fake-data.json')
+			.then((res) => res.json())
+			.then((data) => {
+				setProducts(data.products);
+				setCategories(data.categories);
+			})
+			.catch((error) => console.log(error));
+	}, []);
 	return (
 		<div className="flex gap-4 pb-16">
-			<aside className="w-[200px]">
-				<ul className="space-y-4 bg-white rounded-xl border p-4 shadow-xl">
-					{links.map((link) => (
-						<li className="btn w-full rounded-full font-medium" key={link}>
-							Hello
-						</li>
-					))}
-				</ul>
-			</aside>
-			<div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-				{products.map((product) => (
-					<ProductCard key={product} />
-				))}
-			</div>
+			<Sidebar categories={categories} />
+			<ProductsGallery products={products} />
 		</div>
 	);
 };

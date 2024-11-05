@@ -6,7 +6,7 @@ import Shop from './components/Shop';
 const App = () => {
 	return (
 		<div className="bg-stone-100 pt-4">
-			<header className="rounded-xl max-w-7xl mx-auto bg-purple-500 text-white py-4 mb-80">
+			<header className="rounded-xl max-w-7xl mx-auto text-white bg-purple-500 py-4 mb-80">
 				<Navbar />
 				<Banner />
 			</header>
