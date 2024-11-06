@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { useCart } from '../contexts/CartProvider';
 import Trash from './icons/Trash';
 const CartProductCard = ({ product }) => {
@@ -9,6 +10,7 @@ const CartProductCard = ({ product }) => {
 			(cartItem) => cartItem.product_id !== id
 		);
 		setCartItems(newProducts);
+		toast.success('Removed from cart ❌');
 	};
 	return (
 		<div className="bg-white flex items-center gap-4 p-4 border rounded-xl">
