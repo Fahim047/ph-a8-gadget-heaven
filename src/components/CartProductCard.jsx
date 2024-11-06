@@ -11,11 +11,11 @@ const CartProductCard = ({ product }) => {
 		setCartItems(newProducts);
 	};
 	return (
-		<div className="bg-white flex items-center gap-2 p-4 border rounded-xl">
+		<div className="bg-white flex items-center gap-4 p-4 border rounded-xl">
 			<img
 				src={product_image}
 				alt=""
-				className="size-20 rounded-xl object-cover"
+				className="size-40 rounded-xl object-cover"
 			/>
 			<div className="flex flex-1 justify-between items-center">
 				<div className="space-y-2">
