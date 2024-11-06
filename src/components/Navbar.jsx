@@ -12,13 +12,44 @@ const Navbar = () => {
 				</Link>
 				<ul className="flex items-center gap-6">
 					<li>
-						<NavLink to="/">Home</NavLink>
+						<NavLink
+							to="/"
+							className={({ isActive }) =>
+								isActive ? 'underline font-bold' : ''
+							}
+						>
+							Home
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/statistics">Statistics</NavLink>
+						<NavLink
+							to="/statistics"
+							className={({ isActive }) =>
+								isActive ? 'underline font-bold' : ''
+							}
+						>
+							Statistics
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/dashboard">Dashboard</NavLink>
+						<NavLink
+							to="/dashboard"
+							className={({ isActive }) =>
+								isActive ? 'underline font-bold' : ''
+							}
+						>
+							Dashboard
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							to="/orders"
+							className={({ isActive }) =>
+								isActive ? 'underline font-bold' : ''
+							}
+						>
+							Orders
+						</NavLink>
 					</li>
 				</ul>
 				<div className="space-x-4">

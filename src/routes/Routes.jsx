@@ -3,6 +3,8 @@ import CartProducts from '../components/CartProducts';
 import ProductsGallery from '../components/ProductsGallery';
 import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
+import NotFoundPage from '../pages/NotFoundPage';
+import Orders from '../pages/Orders';
 import ProductDetails from '../pages/ProductDetails';
 import Statistics from '../pages/Statistics';
 
@@ -43,8 +45,12 @@ const routes = createBrowserRouter([
 		],
 	},
 	{
+		path: '/orders',
+		element: <Orders />,
+	},
+	{
 		path: '*',
-		element: '404 Not found',
+		element: <NotFoundPage />,
 	},
 ]);
 export default routes;
