@@ -1,6 +1,14 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Sidebar = ({ categories }) => {
+const Sidebar = () => {
+	const [categories, setCategories] = useState([]);
+	useEffect(() => {
+		fetch('/categories.json')
+			.then((res) => res.json())
+			.then((data) => setCategories(data.categories))
+			.catch((error) => console.log(error));
+	});
 	return (
 		<aside className="w-full sm:w-[200px]">
 			<ul className="space-y-4 bg-white rounded-xl border p-4 shadow-xl">
@@ -8,7 +16,7 @@ const Sidebar = ({ categories }) => {
 					<NavLink
 						to="/"
 						className={({ isActive }) =>
-							`btn hover:bg-transparent ${
+							`btn hover:bg-none ${
 								isActive ? 'bg-purple-500' : ''
 							} w-full rounded-full font-medium`
 						}
@@ -16,7 +24,7 @@ const Sidebar = ({ categories }) => {
 						All Products
 					</NavLink>
 				</li>
-				{categories.map((category) => (
+				{categories?.map((category) => (
 					<li key={category.id}>
 						<NavLink
 							to={`/products/${category.slug}`}

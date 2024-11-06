@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import CartProducts from '../components/CartProducts';
 import ProductsGallery from '../components/ProductsGallery';
 import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
@@ -9,7 +10,6 @@ const routes = createBrowserRouter([
 	{
 		path: '/',
 		element: <Home />,
-		loader: () => fetch('/categories.json'),
 		children: [
 			{
 				path: '',
@@ -35,6 +35,12 @@ const routes = createBrowserRouter([
 	{
 		path: '/dashboard',
 		element: <Dashboard />,
+		children: [
+			{
+				path: '',
+				element: <CartProducts />,
+			},
+		],
 	},
 	{
 		path: '*',

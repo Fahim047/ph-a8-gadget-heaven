@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
@@ -7,13 +6,9 @@ import ProductDetailsCard from '../components/ProductDetailsCard';
 const ProductDetails = () => {
 	const data = useLoaderData();
 	const { productId } = useParams();
-	const [product, setProduct] = useState({});
-	useEffect(() => {
-		const item = data.products.find(
-			(product) => product.product_id === productId
-		);
-		setProduct(item);
-	}, []);
+	const productData = data.products.find(
+		(product) => product.product_id === productId
+	);
 	return (
 		<div className="bg-stone-100">
 			<Navbar />
@@ -29,7 +24,7 @@ const ProductDetails = () => {
 					</p>
 				</div>
 			</div>
-			<ProductDetailsCard product={product} />
+			<ProductDetailsCard product={productData} />
 			<div className="pt-16">
 				<Footer />
 			</div>
