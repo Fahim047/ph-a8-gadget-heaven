@@ -1,28 +1,29 @@
-## Private For your Assignment
+# Gadget Heaven
 
-you have to create private repo in our Google Classroom . here is the Link
+This is a gadget selling e-commerce web application. Built with React and Tailwind CSS, the application allows users to add items to a cart, purchase, and view orders. The project is fully responsive and helps me understand the workflows of an e-commerce web application.
 
-# [https://classroom.github.com/a/\_zIUwTOu](https://classroom.github.com/a/_zIUwTOu)
+## Key Features
 
-figma link: https://www.figma.com/design/qr7hizhQyfmitEimBC6blK/Assignment-8?node-id=0-1&node-type=canvas&t=7Sr6v8i3wIN015u6-0
+- View Products by category.
+- Add product to wishlist.
+- Add product to cart.
+- Remove Product from cart.
+- Sort products by price(desc).
+- Purchase product.
+- See order details.
 
-## follow requerment pdf
+## Technology
 
-<div className="-mb-[130px] max-w-6xl mx-auto my-6 p-4 rounded-xl border border-white/30 backdrop-blur-lg shadow-lg">
-			<div className="bg-gradient-to-tr from-blue-200 via-white to-[#ebc494] flex flex-col items-center justify-center gap-2 py-20 px-6 rounded-lg">
-				<h2 className="text-3xl font-bold">Subscribe to our Newsletter</h2>
-				<p className="text-gray-500">
-					Get the latest updates and news right in your inbox!
-				</p>
-				<div className="text-center inline-flex gap-2 mt-4">
-					<input
-						type="text"
-						placeholder="Enter you email"
-						className="input input-bordered w-full md:w-[300px] bg-white/20  placeholder-gray-300 backdrop-blur-md border  rounded-lg p-3"
-					/>
-					<button className="btn border-none bg-gradient-to-r from-[#ebc494] to-pink-400/40 font-semibold px-6 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105">
-						Subscribe
-					</button>
-				</div>
-			</div>
-		</div>
+- Vite
+- React
+- Tailwind
+- React Router Dom
+- React-Toastify
+
+## Useful Links
+
+Live Link: [Gadget Heaven](https://ph-a8-gadget-heaven.vercel.app/)
+Requirements: [Requirements PDF](/requirements.pdf)
+Figma Design: [Figma](https://www.figma.com/design/qr7hizhQyfmitEimBC6blK/Assignment-8?node-id=0-1&node-type=canvas&t=7Sr6v8i3wIN015u6-0)
+
+**A star🌟 will motivate me to do such awesome projects. Thank you**
