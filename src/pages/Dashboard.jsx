@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SuccessImage from '../assets/success.png';
 import CartProducts from '../components/CartProducts';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import WishListProducts from '../components/WishListProducts';
 import { useCart } from '../contexts/CartProvider';
 const Dashboard = () => {
+	const navigate = useNavigate();
 	const [active, setActive] = useState('cart');
-	const { cartItems, setCartItems } = useCart();
+	const { cartItems, setCartItems, setOrders } = useCart();
+
 	const totalPrice = cartItems.reduce(
 		(prev, current) => prev + current.price,
 		0
@@ -14,6 +18,18 @@ const Dashboard = () => {
 	const handleSort = () => {
 		const sortedCartItems = cartItems.toSorted((a, b) => b.price - a.price);
 		setCartItems(sortedCartItems);
+	};
+	const handlePurchase = () => {
+		const newOrder = {
+			orderId: crypto.randomUUID(),
+			date: new Date(),
+			status: 'Processing',
+			total: totalPrice,
+			items: cartItems,
+		};
+		setOrders((prev) => [...prev, newOrder]);
+		document.getElementById('payment_success_modal').showModal();
+		setCartItems([]);
 	};
 	return (
 		<div className="bg-stone-100">
@@ -69,7 +85,11 @@ const Dashboard = () => {
 								>
 									Sort by price
 								</button>
-								<button className="btn btn-sm bg-purple-500 text-white hover:text-purple-500 rounded-full">
+								<button
+									className="btn btn-sm bg-purple-500 text-white hover:text-purple-500 rounded-full"
+									disabled={cartItems.length === 0}
+									onClick={handlePurchase}
+								>
 									Purchase
 								</button>
 							</div>
@@ -78,6 +98,43 @@ const Dashboard = () => {
 					{active === 'cart' ? <CartProducts /> : <WishListProducts />}
 				</div>
 			</section>
+			<dialog
+				id="payment_success_modal"
+				className="modal modal-bottom sm:modal-middle"
+			>
+				<div className="modal-box text-center p-8 bg-white rounded-lg shadow-lg">
+					<div className="flex flex-col items-center">
+						<div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
+							<img src={SuccessImage} alt="" />
+						</div>
+						<h3 className="font-bold text-2xl text-gray-800">
+							Payment Successful!
+						</h3>
+						<p className="text-gray-600 mt-2">
+							Thank you for your purchase! Your payment has been successfully
+							processed.
+						</p>
+						<div className="modal-action flex justify-center mt-6">
+							<button
+								className="btn btn-outline"
+								onClick={() => navigate('/orders')}
+							>
+								View Orders
+							</button>
+							<button
+								className="btn bg-purple-500 text-white hover:bg-purple-600"
+								onClick={() => {
+									document.getElementById('payment_success_modal').close();
+									navigate('/');
+								}}
+							>
+								Close
+							</button>
+						</div>
+					</div>
+				</div>
+			</dialog>
+
 			<Footer />
 		</div>
 	);

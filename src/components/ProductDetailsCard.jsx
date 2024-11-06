@@ -7,6 +7,7 @@ import HeartSolid from './icons/HeartSolid';
 import ShoppingCart from './icons/ShoppingCart';
 const ProductDetailsCard = ({ product }) => {
 	const {
+		product_id,
 		product_title,
 		product_image,
 		specifications,
@@ -15,9 +16,14 @@ const ProductDetailsCard = ({ product }) => {
 		rating,
 		availability,
 	} = product;
-	const { setCartItems, wishList, setWishList } = useCart();
+	const { cartItems, setCartItems, wishList, setWishList } = useCart();
 	const [isDisabled, setIsDisabled] = useState(false);
 	const handleAddToCart = () => {
+		const exists = cartItems.find((item) => item.product_id === product_id);
+		if (exists) {
+			toast.error('Product already in cart');
+			return;
+		}
 		setCartItems((prev) => [...prev, product]);
 		toast.success('Product added to cart');
 	};

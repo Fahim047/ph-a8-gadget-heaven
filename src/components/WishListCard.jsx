@@ -1,11 +1,20 @@
 import { toast } from 'react-toastify';
 import { useCart } from '../contexts/CartProvider';
-import ShoppingCart from './icons/ShoppingCart';
 import Trash from './icons/Trash';
 const WishListCard = ({ product }) => {
 	const { product_id, product_title, price, description, product_image } =
 		product;
-	const { wishList, setWishList, setCartItems } = useCart();
+	const { wishList, setWishList, cartItems, setCartItems } = useCart();
+
+	const handleAddToCart = () => {
+		const exists = cartItems.find((item) => item.product_id === product_id);
+		if (exists) {
+			toast.error('Product already in cart');
+			return;
+		}
+		setCartItems((prev) => [...prev, product]);
+		toast.success('Product added to cart');
+	};
 	const handleRemoveProduct = (id) => {
 		const newProducts = wishList.filter((item) => item.product_id !== id);
 		setWishList(newProducts);
@@ -25,12 +34,9 @@ const WishListCard = ({ product }) => {
 					<p className="font-medium">$ {price}</p>
 					<button
 						className="btn btn-sm rounded-full bg-purple-500 text-white hover:text-black"
-						onClick={() => {
-							setCartItems((prev) => [...prev, product]);
-							toast.success('Added to cart');
-						}}
+						onClick={handleAddToCart}
 					>
-						Add to cart <ShoppingCart />
+						Add to cart
 					</button>
 				</div>
 				<button

@@ -1,49 +1,11 @@
-import React from 'react';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-const orders = [
-	{
-		orderId: '123456',
-		date: '2023-10-25',
-		status: 'Delivered',
-		total: 59.98,
-		items: [
-			{
-				id: 'p1',
-				name: 'Product 1',
-				image: 'https://via.placeholder.com/50',
-				quantity: 1,
-				price: 29.99,
-			},
-			{
-				id: 'p2',
-				name: 'Product 2',
-				image: 'https://via.placeholder.com/50',
-				quantity: 1,
-				price: 29.99,
-			},
-		],
-	},
-	{
-		orderId: '654321',
-		date: '2023-11-01',
-		status: 'Pending',
-		total: 89.97,
-		items: [
-			{
-				id: 'p3',
-				name: 'Product 3',
-				image: 'https://via.placeholder.com/50',
-				quantity: 2,
-				price: 44.99,
-			},
-		],
-	},
-];
+import { useCart } from '../contexts/CartProvider';
 
 const Orders = () => {
+	const { orders } = useCart();
 	return (
-		<div>
+		<div className="bg-stone-100">
 			<Navbar />
 			<div className="max-w-4xl mx-auto p-6 min-h-screen">
 				<h1 className="text-3xl font-bold text-purple-500 mb-8">Your Orders</h1>
@@ -56,9 +18,9 @@ const Orders = () => {
 								className="p-6 bg-white shadow-md rounded-lg border border-gray-200"
 							>
 								<div className="flex justify-between items-center border-b pb-4 mb-4">
-									<div>
+									<div className="space-y-2">
 										<p className="text-lg font-semibold text-gray-800">
-											Order #{order.orderId}
+											Order Id #{order.orderId}
 										</p>
 										<p className="text-sm text-gray-500">
 											Date: {new Date(order.date).toLocaleDateString()}
@@ -78,22 +40,20 @@ const Orders = () => {
 								<div className="space-y-2">
 									{order.items.map((item) => (
 										<div
-											key={item.id}
+											key={item.product_id}
 											className="flex justify-between items-center"
 										>
 											<div className="flex items-center">
 												<img
-													src={item.image}
-													alt={item.name}
+													src={item.product_image}
+													alt={item.product_title}
 													className="w-12 h-12 rounded-lg object-cover mr-4"
 												/>
 												<div>
 													<p className="font-medium text-gray-800">
-														{item.name}
+														{item.product_title}
 													</p>
-													<p className="text-sm text-gray-500">
-														Qty: {item.quantity}
-													</p>
+													<p className="text-sm text-gray-500">Qty: 1</p>
 												</div>
 											</div>
 											<p className="text-sm font-medium text-gray-700">
